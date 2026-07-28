@@ -1,0 +1,34 @@
+from collections import deque
+
+moves = [(1,0),(2,0),(0,1),(0,2),(1,1)]
+
+def safe(m, c):
+    return (m == 0 or m >= c) and (3-m == 0 or 3-m >= 3-c)
+
+def bfs():
+    queue = deque([(3,3,1)])
+    visited = set()
+
+    while queue:
+        m, c, b = queue.popleft()
+
+        if (m,c,b) in visited:
+            continue
+
+        visited.add((m,c,b))
+        print((m,c,b))
+
+        if (m,c,b) == (0,0,0):
+            print("Goal Reached")
+            return
+
+        for dm, dc in moves:
+            if b == 1:
+                nm, nc, nb = m-dm, c-dc, 0
+            else:
+                nm, nc, nb = m+dm, c+dc, 1
+
+            if 0 <= nm <= 3 and 0 <= nc <= 3 and safe(nm,nc):
+                queue.append((nm,nc,nb))
+
+bfs()
