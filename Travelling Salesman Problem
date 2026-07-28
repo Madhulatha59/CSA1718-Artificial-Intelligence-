@@ -1,0 +1,27 @@
+from itertools import permutations
+
+graph = [
+[0, 10, 15, 20],
+[10, 0, 35, 25],
+[15, 35, 0, 30],
+[20, 25, 30, 0]
+
+]
+
+cities = [0, 1, 2, 3]
+min_cost = float(&#39;inf&#39;)
+best_path = None
+
+for path in permutations(cities[1:]):
+route = (0,) + path + (0,)
+cost = 0
+
+for i in range(len(route) - 1):
+cost += graph[route[i]][route[i + 1]]
+
+if cost &lt; min_cost:
+min_cost = cost
+best_path = route
+
+print(&quot;Best Path:&quot;, best_path)
+print(&quot;Minimum Cost:&quot;, min_cost)
