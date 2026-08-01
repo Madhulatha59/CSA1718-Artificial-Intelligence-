@@ -1,0 +1,20 @@
+board = [&quot; &quot;] * 9
+
+def display():
+print(board[0], &quot;|&quot;, board[1], &quot;|&quot;, board[2])
+print(&quot;--+---+--&quot;)
+print(board[3], &quot;|&quot;, board[4], &quot;|&quot;, board[5])
+print(&quot;--+---+--&quot;)
+print(board[6], &quot;|&quot;, board[7], &quot;|&quot;, board[8])
+
+for i in range(9):
+display()
+player = &quot;X&quot; if i % 2 == 0 else &quot;O&quot;
+pos = int(input(f&quot;Player {player}, Enter position (1-9): &quot;)) - 1
+
+if board[pos] == &quot; &quot;:
+board[pos] = player
+else:
+print(&quot;Position already occupied!&quot;)
+
+display()
